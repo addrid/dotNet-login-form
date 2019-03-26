@@ -1,0 +1,42 @@
+﻿@using ukol9.Models;
+@using ukol9.DataObjects;
+@model IndexModel
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>@Html.ActionLink("Log off", "LogOff")</p>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustomerID)
+        @Html.TextBoxFor(m => m.CustomerID, new { @class = "form-control input-sm" })
+    </div>
+
+    <input type="submit" value="Click me 1" class="btn btn-default" />
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Order Date</th>
+            <th>Employee's Last Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (CustomerOrderDO order in ViewBag.Orders)
+        {
+            <tr>
+                <td>@order.OrderID</td>
+                <td>@order.OrderDate</td>
+                <td>@order.EmployeeLastName</td>
+            </tr>
+        }
+    </tbody>
+</table>
